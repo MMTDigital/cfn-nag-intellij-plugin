@@ -62,11 +62,13 @@ public class CfnNagResult {
     }
 
     public enum ViolationType{
+        FAIL,
         WARN
         ;
 
         public HighlightSeverity getHighlightSeverity(){
             switch (this){
+                case FAIL: return HighlightSeverity.ERROR;
                 case WARN: return HighlightSeverity.WARNING;
                 default: throw new IllegalArgumentException("No HighlightSeverity for ViolationType " + name());
             }

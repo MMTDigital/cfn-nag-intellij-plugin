@@ -98,9 +98,14 @@ public class CheckExternalAnnotator extends ExternalAnnotator<CheckAnnotationInp
             int start = DocumentUtil.getFirstNonSpaceCharOffset(document, lineStartOffset, lineEndOffset);
             range = new TextRange(start, lineEndOffset);
 
+            String tooltip = violation.getMessage();
+            if (!tooltip.endsWith("\n")) tooltip = tooltip + "\n";
+            tooltip = tooltip + "\n[" + violation.getId() + ": " + violation.getName() + "]";
+
             holder
-                    .newAnnotation(violation.getType().getHighlightSeverity(), "[" + violation.getId() + "] " + violation.getMessage())
+                    .newAnnotation(violation.getType().getHighlightSeverity(), "[" + violation.getId() + "] " + violation.getName())
                     .range(range)
+                    .tooltip(tooltip)
                     .create();
         }
     }
