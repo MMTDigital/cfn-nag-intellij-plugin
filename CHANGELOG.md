@@ -1,6 +1,6 @@
 <!-- Keep a Changelog guide -> https://keepachangelog.com -->
 
-# cfn-nag-intellij-plugin Changelog
+# cfn-nag Changelog
 
 ## [Unreleased]
 ### Added
