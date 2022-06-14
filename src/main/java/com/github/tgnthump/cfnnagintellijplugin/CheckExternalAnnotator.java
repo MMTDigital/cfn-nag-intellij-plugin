@@ -87,6 +87,9 @@ public class CheckExternalAnnotator extends ExternalAnnotator<CheckAnnotationInp
 
     private void createAnnotation(@NotNull AnnotationHolder holder, @NotNull Document document, @NotNull CfnNagResult.Violation violation) {
         for (int errorLine : violation.getLineNumbers()) {
+
+            errorLine -= 1;
+
             if (errorLine < 0 || errorLine >= document.getLineCount()) {
                 return;
             }
