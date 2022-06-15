@@ -14,7 +14,7 @@
                 parentId="tools"
                 instance="uk.me.pilgrim.cfnnag.settings.CfnNagSettingsConfigurable"
                 id="uk.me.pilgrim.cfnnag.settings.CfnNagSettingsConfigurable"
-                displayName="Cfn-nag Settings"
+                displayName="Cfn Nag"
         />
     </extensions>
 </idea-plugin>

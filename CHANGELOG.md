@@ -5,6 +5,7 @@
 ## [Unreleased]
 ### Added
 - Add defaults to settings to fix crash
+- Rename settings page to 'Cfn Nag'
 
 ## [1.0.0]
 ### Added
