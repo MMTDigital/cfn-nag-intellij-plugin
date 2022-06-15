@@ -1,4 +1,4 @@
-package com.github.tgnthump.cfnnagintellijplugin;
+package uk.me.pilgrim.cfnnag;
 
 import com.intellij.lang.annotation.AnnotationHolder;
 import com.intellij.lang.annotation.ExternalAnnotator;

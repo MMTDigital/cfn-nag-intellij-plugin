@@ -1,4 +1,4 @@
-package com.github.tgnthump.cfnnagintellijplugin;
+package uk.me.pilgrim.cfnnag;
 
 import com.intellij.execution.ExecutionException;
 import com.intellij.execution.configurations.GeneralCommandLine;

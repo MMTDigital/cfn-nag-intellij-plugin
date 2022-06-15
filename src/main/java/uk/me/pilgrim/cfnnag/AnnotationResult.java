@@ -1,4 +1,4 @@
-package com.github.tgnthump.cfnnagintellijplugin;
+package uk.me.pilgrim.cfnnag;
 
 import java.util.Collection;
 import java.util.List;

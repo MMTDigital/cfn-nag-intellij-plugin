@@ -1,4 +1,4 @@
-package com.github.tgnthump.cfnnagintellijplugin;
+package uk.me.pilgrim.cfnnag;
 
 import com.google.gson.annotations.SerializedName;
 import com.intellij.lang.annotation.HighlightSeverity;

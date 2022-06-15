@@ -1,4 +1,4 @@
-package com.github.tgnthump.cfnnagintellijplugin;
+package uk.me.pilgrim.cfnnag;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -8,6 +8,7 @@ import com.intellij.execution.configurations.GeneralCommandLine;
 import com.intellij.execution.process.*;
 import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.openapi.util.Key;
+import org.apache.groovy.util.Arrays;
 import org.jetbrains.annotations.NotNull;
 
 import java.lang.reflect.Type;
@@ -26,12 +27,18 @@ public class CheckRunner {
         CfnNagResult result;
         try {
             GeneralCommandLine commandLine = createCommandLine(exe, cwd);
+            String[] parameters = {
+                    "--blacklist-path=/Users/benjaminpilgrim/dev/Vodafone/cfn-nag-custom-rules/config/warnings-blacklist.yaml",
+                    "--rule-directory=/Users/benjaminpilgrim/dev/Vodafone/cfn-nag-custom-rules/lib/rules",
+                    "--output-format=json"
+            };
+
             if (content == null) {
-                commandLine = commandLine.withParameters("--output-format=json", file);
+                commandLine = commandLine.withParameters(Arrays.concat(parameters, new String[]{file}));
             } else {
                 commandLine = ((CommandLineWithInput) commandLine)
                         .withInput(content)
-                        .withParameters("--output-format=json");
+                        .withParameters(parameters);
             }
             ProcessOutput out = execute(commandLine);
             try {
