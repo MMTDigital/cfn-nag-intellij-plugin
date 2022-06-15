@@ -2,6 +2,9 @@
 
 # cfn-nag Changelog
 
-## [Unreleased]
+## [1.0.0]
 ### Added
+- Created cfn-nag initial plugin
+- Added custom rule directory support
+- Added blacklist path support
 - Initial scaffold created from [IntelliJ Platform Plugin Template](https://github.com/JetBrains/intellij-platform-plugin-template)
