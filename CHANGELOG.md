@@ -2,6 +2,8 @@
 
 # cfn-nag Changelog
 
+## [Unreleased]
+
 ## [1.0.0]
 ### Added
 - Created cfn-nag initial plugin
