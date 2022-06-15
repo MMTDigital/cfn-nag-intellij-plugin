@@ -3,6 +3,8 @@
 # cfn-nag Changelog
 
 ## [Unreleased]
+### Added
+- Add defaults to settings to fix crash
 
 ## [1.0.0]
 ### Added

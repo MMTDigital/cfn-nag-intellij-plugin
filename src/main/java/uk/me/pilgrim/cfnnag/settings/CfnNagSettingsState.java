@@ -14,9 +14,9 @@ import org.jetbrains.annotations.Nullable;
 )
 public class CfnNagSettingsState implements PersistentStateComponent<CfnNagSettingsState> {
 
-    public String executablePath;
-    public String blacklistPath;
-    public String ruleDirectory;
+    public String executablePath = "cfn_nag";
+    public String blacklistPath = "";
+    public String ruleDirectory = "";
 
     public static CfnNagSettingsState getInstance() {
         return ApplicationManager.getApplication().getService(CfnNagSettingsState.class);
