@@ -1,4 +1,4 @@
-package uk.me.pilgrim.cfnnag;
+package uk.me.pilgrim.cfnnag.cmd.utils;
 
 import com.intellij.execution.ExecutionException;
 import com.intellij.execution.configurations.GeneralCommandLine;

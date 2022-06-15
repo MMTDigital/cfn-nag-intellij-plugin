@@ -1,25 +1,25 @@
-package uk.me.pilgrim.cfnnag;
+package uk.me.pilgrim.cfnnag.externalAnnotator;
 
 import com.intellij.psi.PsiFile;
 
-class CheckAnnotationInput {
+public class CfnNagInitialInfo {
     private final PsiFile psiFile;
     private final String fileContent;
 
-    CheckAnnotationInput(PsiFile psiFile, String fileContent) {
+    public CfnNagInitialInfo(PsiFile psiFile, String fileContent) {
         this.psiFile = psiFile;
         this.fileContent = fileContent;
     }
 
-    String getCwd() {
+    public String getCwd() {
         return psiFile.getProject().getBasePath();
     }
 
-    String getFilePath() {
+    public String getFilePath() {
         return psiFile.getVirtualFile().getPath();
     }
 
-    String getFileContent() {
+    public String getFileContent() {
         return fileContent;
     }
 

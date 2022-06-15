@@ -1,4 +1,4 @@
-package uk.me.pilgrim.cfnnag;
+package uk.me.pilgrim.cfnnag.externalAnnotator;
 
 import com.intellij.lang.annotation.AnnotationHolder;
 import com.intellij.lang.annotation.ExternalAnnotator;
@@ -17,12 +17,16 @@ import com.intellij.util.DocumentUtil;
 import org.apache.commons.lang.StringUtils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import uk.me.pilgrim.cfnnag.cmd.CfnNagOutput;
+import uk.me.pilgrim.cfnnag.cmd.CfnNagRunner;
+import uk.me.pilgrim.cfnnag.dtos.ViolationDto;
+import uk.me.pilgrim.cfnnag.settings.CfnNagSettingsState;
 
-public class CheckExternalAnnotator extends ExternalAnnotator<CheckAnnotationInput, AnnotationResult> {
-    private static final Logger LOG = Logger.getInstance(CheckExternalAnnotator.class);
+public class CfnNagExternalAnnotator extends ExternalAnnotator<CfnNagInitialInfo, CfnNagAnnotationResult> {
+    private static final Logger LOG = Logger.getInstance(CfnNagExternalAnnotator.class);
 
     @Override
-    public @Nullable CheckAnnotationInput collectInformation(@NotNull PsiFile file) {
+    public @Nullable CfnNagInitialInfo collectInformation(@NotNull PsiFile file) {
         if (file.getContext() != null) {
             return null;
         }
@@ -38,20 +42,20 @@ public class CheckExternalAnnotator extends ExternalAnnotator<CheckAnnotationInp
         }
         FileDocumentManager fileDocumentManager = FileDocumentManager.getInstance();
         boolean fileModified = fileDocumentManager.isFileModified(virtualFile);
-        return new CheckAnnotationInput(file, fileModified ? file.getText() : null);
+        return new CfnNagInitialInfo(file, fileModified ? file.getText() : null);
     }
 
     @Override
-    public @Nullable AnnotationResult doAnnotate(CheckAnnotationInput input) {
+    public @Nullable CfnNagAnnotationResult doAnnotate(CfnNagInitialInfo input) {
         try {
-            CfnNagResult result = CheckRunner.runCheck("cfn_nag", input.getCwd(), input.getFilePath(), input.getFileContent());
+            CfnNagOutput result = CfnNagRunner.run(CfnNagSettingsState.getInstance(), input.getCwd(), input.getFilePath(), input.getFileContent());
 
             if (StringUtils.isNotEmpty(result.getErrorOutput())) {
                 LOG.error("Error running  inspection: ", result.getErrorOutput());
                 Notifications.Bus.notify(new Notification("cfn-nag", "Cfn-nag", "Error running inspection: " + result.getErrorOutput(), NotificationType.WARNING, null), null);
                 return null;
             }
-            return new AnnotationResult(input, result);
+            return new CfnNagAnnotationResult(input, result);
         } catch (Exception e) {
             LOG.error("Error running  inspection: ", e);
             Notifications.Bus.notify(new Notification("cfn-nag", "Cfn-nag", "Error running inspection: " + e.getMessage(), NotificationType.ERROR, null), null);
@@ -71,7 +75,7 @@ public class CheckExternalAnnotator extends ExternalAnnotator<CheckAnnotationInp
     }
 
     @Override
-    public void apply(@NotNull PsiFile file, AnnotationResult annotationResult, @NotNull AnnotationHolder holder) {
+    public void apply(@NotNull PsiFile file, CfnNagAnnotationResult annotationResult, @NotNull AnnotationHolder holder) {
         if (annotationResult == null) {
             return;
         }
@@ -80,12 +84,12 @@ public class CheckExternalAnnotator extends ExternalAnnotator<CheckAnnotationInp
             return;
         }
 
-        for (CfnNagResult.Violation violation : annotationResult.getIssues()) {
+        for (ViolationDto violation : annotationResult.getViolations()) {
             createAnnotation(holder, document, violation);
         }
     }
 
-    private void createAnnotation(@NotNull AnnotationHolder holder, @NotNull Document document, @NotNull CfnNagResult.Violation violation) {
+    private void createAnnotation(@NotNull AnnotationHolder holder, @NotNull Document document, @NotNull ViolationDto violation) {
         for (int errorLine : violation.getLineNumbers()) {
 
             errorLine -= 1;

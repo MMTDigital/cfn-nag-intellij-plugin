@@ -7,7 +7,14 @@
     <depends>com.intellij.modules.lang</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <externalAnnotator language="yaml" implementationClass="uk.me.pilgrim.cfnnag.CheckExternalAnnotator"/>
-        <externalAnnotator language="JSON" implementationClass="uk.me.pilgrim.cfnnag.CheckExternalAnnotator"/>
+        <externalAnnotator language="yaml" implementationClass="uk.me.pilgrim.cfnnag.externalAnnotator.CfnNagExternalAnnotator"/>
+        <externalAnnotator language="JSON" implementationClass="uk.me.pilgrim.cfnnag.externalAnnotator.CfnNagExternalAnnotator"/>
+        <applicationService serviceImplementation="uk.me.pilgrim.cfnnag.settings.CfnNagSettingsState"/>
+        <applicationConfigurable
+                parentId="tools"
+                instance="uk.me.pilgrim.cfnnag.settings.CfnNagSettingsConfigurable"
+                id="uk.me.pilgrim.cfnnag.settings.CfnNagSettingsConfigurable"
+                displayName="Cfn-nag Settings"
+        />
     </extensions>
 </idea-plugin>

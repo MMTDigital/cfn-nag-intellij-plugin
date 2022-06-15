@@ -1,4 +1,4 @@
-package uk.me.pilgrim.cfnnag;
+package uk.me.pilgrim.cfnnag.cmd;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -10,31 +10,40 @@ import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.openapi.util.Key;
 import org.apache.groovy.util.Arrays;
 import org.jetbrains.annotations.NotNull;
+import uk.me.pilgrim.cfnnag.cmd.utils.CommandLineWithInput;
+import uk.me.pilgrim.cfnnag.dtos.FileResultEntryDto;
+import uk.me.pilgrim.cfnnag.settings.CfnNagSettingsState;
 
 import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-public class CheckRunner {
-    private CheckRunner() {
+public class CfnNagRunner {
+    private CfnNagRunner() {
     }
 
-    private static final Logger LOG = Logger.getInstance(CheckRunner.class);
+    private static final Logger LOG = Logger.getInstance(CfnNagRunner.class);
     private static final int TIME_OUT = (int) TimeUnit.SECONDS.toMillis(120L);
 
-    public static CfnNagResult runCheck(@NotNull String exe, @NotNull String cwd, @NotNull String file, String content) {
-        CfnNagResult result;
+    public static CfnNagOutput run(@NotNull CfnNagSettingsState settingsState, @NotNull String cwd, @NotNull String file, String content) {
+        CfnNagOutput result;
         try {
-            GeneralCommandLine commandLine = createCommandLine(exe, cwd);
-            String[] parameters = {
-                    "--blacklist-path=/Users/benjaminpilgrim/dev/Vodafone/cfn-nag-custom-rules/config/warnings-blacklist.yaml",
-                    "--rule-directory=/Users/benjaminpilgrim/dev/Vodafone/cfn-nag-custom-rules/lib/rules",
-                    "--output-format=json"
-            };
+            GeneralCommandLine commandLine = createCommandLine(settingsState.executablePath, cwd);
+            List<String> parameters = new ArrayList<>();
+
+            if (!settingsState.ruleDirectory.isBlank()){
+                parameters.add("--rule-directory=" + settingsState.ruleDirectory);
+            }
+            if (!settingsState.blacklistPath.isBlank()){
+                parameters.add("--blacklist-path=" + settingsState.blacklistPath);
+            }
+            parameters.add("--output-format=json");
 
             if (content == null) {
-                commandLine = commandLine.withParameters(Arrays.concat(parameters, new String[]{file}));
+                parameters.add(file);
+                commandLine = commandLine.withParameters(parameters.toArray(new String[]{}));
             } else {
                 commandLine = ((CommandLineWithInput) commandLine)
                         .withInput(content)
@@ -42,20 +51,20 @@ public class CheckRunner {
             }
             ProcessOutput out = execute(commandLine);
             try {
-                result = new CfnNagResult(parse(out.getStdout()), out.getStderr());
+                result = new CfnNagOutput(parse(out.getStdout()), out.getStderr());
             } catch (Exception e) {
-                result = new CfnNagResult(out.getStdout());
+                result = new CfnNagOutput(out.getStdout());
             }
         } catch (Exception e) {
             LOG.error("Problem with running exe", e);
-            result = new CfnNagResult(e.toString());
+            result = new CfnNagOutput(e.toString());
         }
         return result;
     }
 
-    private static List<CfnNagResult.FileResultEntry> parse(String json) {
+    private static List<FileResultEntryDto> parse(String json) {
         Gson g = new GsonBuilder().create();
-        Type listType = new TypeToken<List<CfnNagResult.FileResultEntry>>() {
+        Type listType = new TypeToken<List<FileResultEntryDto>>() {
         }.getType();
         return g.fromJson(json, listType);
     }
@@ -69,7 +78,7 @@ public class CheckRunner {
     }
 
     @NotNull
-    public static ProcessOutput execute(@NotNull GeneralCommandLine commandLine) throws ExecutionException {
+    private static ProcessOutput execute(@NotNull GeneralCommandLine commandLine) throws ExecutionException {
         LOG.info("Running command: " + commandLine.getCommandLineString());
         Process process = commandLine.createProcess();
         OSProcessHandler processHandler = new ColoredProcessHandler(process, commandLine.getCommandLineString(), StandardCharsets.UTF_8);
