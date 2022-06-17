@@ -3,6 +3,8 @@
 # Cfn Nag Changelog
 
 ## [Unreleased]
+
+## [1.0.2]
 ### Changed
 - Update plugin name capitalisation
 
