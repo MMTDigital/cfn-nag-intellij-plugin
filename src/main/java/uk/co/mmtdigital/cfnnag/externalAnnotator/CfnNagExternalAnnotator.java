@@ -52,13 +52,13 @@ public class CfnNagExternalAnnotator extends ExternalAnnotator<CfnNagInitialInfo
 
             if (StringUtils.isNotEmpty(result.getErrorOutput())) {
                 LOG.error("Error running  inspection: ", result.getErrorOutput());
-                Notifications.Bus.notify(new Notification("cfn-nag", "Cfn-nag", "Error running inspection: " + result.getErrorOutput(), NotificationType.WARNING, null), null);
+                Notifications.Bus.notify(new Notification("cfn-nag", "Cfn-nag", "Error running inspection: " + result.getErrorOutput(), NotificationType.WARNING), null);
                 return null;
             }
             return new CfnNagAnnotationResult(input, result);
         } catch (Exception e) {
             LOG.error("Error running  inspection: ", e);
-            Notifications.Bus.notify(new Notification("cfn-nag", "Cfn-nag", "Error running inspection: " + e.getMessage(), NotificationType.ERROR, null), null);
+            Notifications.Bus.notify(new Notification("cfn-nag", "Cfn-nag", "Error running inspection: " + e.getMessage(), NotificationType.ERROR), null);
         }
         return null;
     }
