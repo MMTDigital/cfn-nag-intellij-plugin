@@ -2,7 +2,7 @@
 <idea-plugin>
     <id>uk.co.mmtdigital.cfnnag</id>
     <name>cfn-nag</name>
-    <vendor>MMT Digital</vendor>
+    <vendor>MMT-Digital</vendor>
 
     <depends>com.intellij.modules.lang</depends>
 
