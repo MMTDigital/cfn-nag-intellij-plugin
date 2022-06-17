@@ -1,8 +1,10 @@
 <!-- Keep a Changelog guide -> https://keepachangelog.com -->
 
-# cfn-nag Changelog
+# Cfn Nag Changelog
 
 ## [Unreleased]
+### Changed
+- Update plugin name capitalisation
 
 ## [1.0.1]
 ### Added

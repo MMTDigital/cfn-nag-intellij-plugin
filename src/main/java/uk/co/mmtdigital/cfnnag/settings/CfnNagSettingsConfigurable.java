@@ -13,7 +13,7 @@ public class CfnNagSettingsConfigurable implements Configurable {
     @Nls(capitalization = Nls.Capitalization.Title)
     @Override
     public String getDisplayName() {
-        return "Cfn Nag";
+        return "CfnNag";
     }
 
     @Override
