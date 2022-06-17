@@ -1,8 +1,8 @@
 # cfn-nag-intellij-plugin
 
 ![Build](https://github.com/MMTDigital/cfn-nag-intellij-plugin/workflows/Build/badge.svg)
-[![Version](https://img.shields.io/jetbrains/plugin/v/19374-cfn-nag.svg)](https://plugins.jetbrains.com/plugin/19374-cfn-nag)
-[![Downloads](https://img.shields.io/jetbrains/plugin/d/19374-cfn-nag.svg)](https://plugins.jetbrains.com/plugin/19374-cfn-nag)
+[![Version](https://img.shields.io/jetbrains/plugin/v/19374-cfnnag.svg)](https://plugins.jetbrains.com/plugin/19374-cfnnag)
+[![Downloads](https://img.shields.io/jetbrains/plugin/d/19374-cfnnag.svg)](https://plugins.jetbrains.com/plugin/19374-cfnnag)
 
 <!-- Plugin description -->
 This plugin adds cfn-nag linting support to CloudFormation yaml and json files.
