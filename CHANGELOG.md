@@ -3,6 +3,8 @@
 # Cfn Nag Changelog
 
 ## [Unreleased]
+
+## [1.0.3]
 ### Added
 - Added plugin icon
 
