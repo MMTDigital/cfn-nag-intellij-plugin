@@ -1,4 +1,4 @@
-package uk.me.pilgrim.cfnnag.externalAnnotator;
+package uk.co.mmtdigital.cfnnag.externalAnnotator;
 
 import com.intellij.psi.PsiFile;
 

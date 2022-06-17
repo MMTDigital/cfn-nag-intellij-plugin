@@ -1,4 +1,4 @@
-package uk.me.pilgrim.cfnnag.settings;
+package uk.co.mmtdigital.cfnnag.settings;
 
 import com.intellij.openapi.options.Configurable;
 import org.jetbrains.annotations.Nls;

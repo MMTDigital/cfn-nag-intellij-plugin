@@ -1,7 +1,7 @@
-package uk.me.pilgrim.cfnnag.dtos;
+package uk.co.mmtdigital.cfnnag.dtos;
 
 import com.google.gson.annotations.SerializedName;
-import uk.me.pilgrim.cfnnag.dtos.enums.ViolationType;
+import uk.co.mmtdigital.cfnnag.dtos.enums.ViolationType;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
-package uk.me.pilgrim.cfnnag.cmd;
+package uk.co.mmtdigital.cfnnag.cmd;
 
-import uk.me.pilgrim.cfnnag.dtos.FileResultEntryDto;
+import uk.co.mmtdigital.cfnnag.dtos.FileResultEntryDto;
 
 import java.util.Collections;
 import java.util.List;

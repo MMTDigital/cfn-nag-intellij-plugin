@@ -1,4 +1,4 @@
-package uk.me.pilgrim.cfnnag.externalAnnotator;
+package uk.co.mmtdigital.cfnnag.externalAnnotator;
 
 import com.intellij.lang.annotation.AnnotationHolder;
 import com.intellij.lang.annotation.ExternalAnnotator;
@@ -17,10 +17,10 @@ import com.intellij.util.DocumentUtil;
 import org.apache.commons.lang.StringUtils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import uk.me.pilgrim.cfnnag.cmd.CfnNagOutput;
-import uk.me.pilgrim.cfnnag.cmd.CfnNagRunner;
-import uk.me.pilgrim.cfnnag.dtos.ViolationDto;
-import uk.me.pilgrim.cfnnag.settings.CfnNagSettingsState;
+import uk.co.mmtdigital.cfnnag.cmd.CfnNagOutput;
+import uk.co.mmtdigital.cfnnag.cmd.CfnNagRunner;
+import uk.co.mmtdigital.cfnnag.dtos.ViolationDto;
+import uk.co.mmtdigital.cfnnag.settings.CfnNagSettingsState;
 
 public class CfnNagExternalAnnotator extends ExternalAnnotator<CfnNagInitialInfo, CfnNagAnnotationResult> {
     private static final Logger LOG = Logger.getInstance(CfnNagExternalAnnotator.class);

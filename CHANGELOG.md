@@ -4,6 +4,7 @@
 
 ## [Unreleased]
 ### Added
+- Update package names and vendor to MMTDigital
 - Add defaults to settings to fix crash
 - Rename settings page to 'Cfn Nag'
 

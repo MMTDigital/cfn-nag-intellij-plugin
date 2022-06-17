@@ -1,9 +1,9 @@
-package uk.me.pilgrim.cfnnag.externalAnnotator;
+package uk.co.mmtdigital.cfnnag.externalAnnotator;
 
-import uk.me.pilgrim.cfnnag.cmd.CfnNagOutput;
-import uk.me.pilgrim.cfnnag.dtos.FileResultDto;
-import uk.me.pilgrim.cfnnag.dtos.FileResultEntryDto;
-import uk.me.pilgrim.cfnnag.dtos.ViolationDto;
+import uk.co.mmtdigital.cfnnag.cmd.CfnNagOutput;
+import uk.co.mmtdigital.cfnnag.dtos.FileResultDto;
+import uk.co.mmtdigital.cfnnag.dtos.FileResultEntryDto;
+import uk.co.mmtdigital.cfnnag.dtos.ViolationDto;
 
 import java.util.Collection;
 import java.util.List;

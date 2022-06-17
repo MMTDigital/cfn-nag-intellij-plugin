@@ -1,4 +1,4 @@
-package uk.me.pilgrim.cfnnag.settings;
+package uk.co.mmtdigital.cfnnag.settings;
 
 import com.intellij.ui.components.JBLabel;
 import com.intellij.ui.components.JBTextField;

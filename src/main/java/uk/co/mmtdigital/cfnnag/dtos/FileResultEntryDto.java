@@ -1,4 +1,4 @@
-package uk.me.pilgrim.cfnnag.dtos;
+package uk.co.mmtdigital.cfnnag.dtos;
 
 import com.google.gson.annotations.SerializedName;
 

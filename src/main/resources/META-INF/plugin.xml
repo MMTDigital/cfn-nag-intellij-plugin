@@ -1,19 +1,19 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
-    <id>uk.me.pilgrim.cfnnag</id>
+    <id>uk.co.mmtdigital.cfnnag</id>
     <name>cfn-nag</name>
-    <vendor>tgnthump</vendor>
+    <vendor>MMT Digital</vendor>
 
     <depends>com.intellij.modules.lang</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <externalAnnotator language="yaml" implementationClass="uk.me.pilgrim.cfnnag.externalAnnotator.CfnNagExternalAnnotator"/>
-        <externalAnnotator language="JSON" implementationClass="uk.me.pilgrim.cfnnag.externalAnnotator.CfnNagExternalAnnotator"/>
-        <applicationService serviceImplementation="uk.me.pilgrim.cfnnag.settings.CfnNagSettingsState"/>
+        <externalAnnotator language="yaml" implementationClass="uk.co.mmtdigital.cfnnag.externalAnnotator.CfnNagExternalAnnotator"/>
+        <externalAnnotator language="JSON" implementationClass="uk.co.mmtdigital.cfnnag.externalAnnotator.CfnNagExternalAnnotator"/>
+        <applicationService serviceImplementation="uk.co.mmtdigital.cfnnag.settings.CfnNagSettingsState"/>
         <applicationConfigurable
                 parentId="tools"
-                instance="uk.me.pilgrim.cfnnag.settings.CfnNagSettingsConfigurable"
-                id="uk.me.pilgrim.cfnnag.settings.CfnNagSettingsConfigurable"
+                instance="uk.co.mmtdigital.cfnnag.settings.CfnNagSettingsConfigurable"
+                id="uk.co.mmtdigital.cfnnag.settings.CfnNagSettingsConfigurable"
                 displayName="Cfn Nag"
         />
     </extensions>

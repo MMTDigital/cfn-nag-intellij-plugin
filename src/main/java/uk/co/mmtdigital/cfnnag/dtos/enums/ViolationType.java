@@ -1,4 +1,4 @@
-package uk.me.pilgrim.cfnnag.dtos.enums;
+package uk.co.mmtdigital.cfnnag.dtos.enums;
 
 import com.intellij.lang.annotation.HighlightSeverity;
 

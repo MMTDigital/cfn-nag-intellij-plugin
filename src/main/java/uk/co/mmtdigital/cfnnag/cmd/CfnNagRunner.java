@@ -1,4 +1,4 @@
-package uk.me.pilgrim.cfnnag.cmd;
+package uk.co.mmtdigital.cfnnag.cmd;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -8,11 +8,10 @@ import com.intellij.execution.configurations.GeneralCommandLine;
 import com.intellij.execution.process.*;
 import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.openapi.util.Key;
-import org.apache.groovy.util.Arrays;
 import org.jetbrains.annotations.NotNull;
-import uk.me.pilgrim.cfnnag.cmd.utils.CommandLineWithInput;
-import uk.me.pilgrim.cfnnag.dtos.FileResultEntryDto;
-import uk.me.pilgrim.cfnnag.settings.CfnNagSettingsState;
+import uk.co.mmtdigital.cfnnag.dtos.FileResultEntryDto;
+import uk.co.mmtdigital.cfnnag.settings.CfnNagSettingsState;
+import uk.co.mmtdigital.cfnnag.cmd.utils.CommandLineWithInput;
 
 import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
