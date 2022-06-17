@@ -3,6 +3,8 @@
 # cfn-nag Changelog
 
 ## [Unreleased]
+
+## [1.0.1]
 ### Added
 - Update package names and vendor to MMTDigital
 - Add defaults to settings to fix crash
